@@ -15,6 +15,7 @@ export class FeedbackFormComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({ 
       'Access-Control-Allow-Origin':'*',
+      'Referrer-Policy': 'no-referrer'
     })
   };
   
