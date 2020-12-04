@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  front-feedback:
+    image: feedback-frontend 
+    ports:
+      - 8080:80
+    networks:
+      - mynetwork
+    environment: 
+      - BACKEND_ADDRESS=back-feedback
+      - BACKEND_PORT=4000
+    depends_on:
+     - back-feedback
+
+  back-feedback:
+    image: feedback-backend
+    ports:
+      - 4000:4000
+    networks:
+      - mynetwork
+    environment: 
+      - DB_ADDRESS=database-mongo
+      - DB_PORT=27017
+      - PORT=4000
+    depends_on:
+     - database-mongo
+     
+  database-mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks:
+      - mynetwork
+    volumes:
+      - ~/mongo/data:/data/db
+
+networks:
+  mynetwork:
+    name: custom_network
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
