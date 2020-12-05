@@ -8,6 +8,7 @@ services:
       - 4040:4040
     networks:
       - mynetwork
+      - private-network
     environment: 
       - BACKEND_ADDRESS=localhost
       - BACKEND_PORT=4040
@@ -17,37 +18,12 @@ services:
     depends_on:
      - database-mongo
 
-  front-feedback:
-    image: feedback-frontend 
-    ports:
-      - 8080:80
-    networks:
-      - mynetwork
-    environment: 
-      - BACKEND_ADDRESS=back-feedback
-      - BACKEND_PORT=4000
-    depends_on:
-     - back-feedback
-
-  back-feedback:
-    image: feedback-backend
-    ports:
-      - 4000:4000
-    networks:
-      - mynetwork
-    environment: 
-      - DB_ADDRESS=database-mongo
-      - DB_PORT=27017
-      - PORT=4000
-    depends_on:
-     - database-mongo
-     
   database-mongo:
     image: mongo:latest
     ports:
       - 27017:27017
     networks:
-      - mynetwork
+      - private-network
     volumes:
       - ~/mongo/data:/data/db
 
@@ -59,3 +35,10 @@ networks:
      config:
        - subnet: 10.5.0.0/16
          gateway: 10.5.0.1
+  private-network:
+    name: private-network
+    driver: macvlan
+    ipam:
+     config:
+       - subnet: 11.5.0.0/16
+         gateway: 11.5.0.1
