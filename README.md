@@ -9,5 +9,7 @@ This is a demo app to use Angular, Express, Mongo to build a feedback app.
 [FAILING] CORS ISSUES on frontend<br>
 <br><br>V1.1<br><br>
 [SOLVED] CORS ISSUES on frontend<br>
+<br><br>V1.2<br><br>
+[WORKING] ADDED DB Isolation from localhost<br>
          CREATED HYBRID IMAGE<br><br>
          Connect on localhost:8090
