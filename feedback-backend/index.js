@@ -3,6 +3,7 @@ var log = require('morgan')('dev');
 var bodyParser = require('body-parser');
 var properties = require('./config/properties');
 var db = require('./config/database');
+var cors = require('cors')
 //hero routes
 var feedbackRoutes = require('./api/feedback/feedback.routes');
 var app = express();
@@ -24,12 +25,18 @@ app.use(bodyParserURLEncoded);
 
 
 // use express router
-app.use('/api', router);
+
+app.use('/api',cors({origin:'*'}), router);
 feedbackRoutes(router);
-app.get('/', (req, res) => {
+
+app.get('/',cors({origin:'*'}), (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Access-Control-Allow-Origin');
     res.send('hello world');
 });
 app.options('/', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Access-Control-Allow-Origin');
     res.send('hello world');
 });
 

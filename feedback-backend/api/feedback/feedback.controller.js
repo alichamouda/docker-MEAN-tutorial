@@ -1,6 +1,8 @@
 var Feedbacks = require('./feedback.dao');
 
 exports.createFeedback = function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Access-Control-Allow-Origin');
     var feedback = {
         message: req.body.message
     };
@@ -18,6 +20,8 @@ exports.createFeedback = function (req, res, next) {
 }
 
 exports.getFeedbacks = function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Access-Control-Allow-Origin');
     Feedbacks.get({}, function(err, feedbacks) {
         if(err) {
             res.json({

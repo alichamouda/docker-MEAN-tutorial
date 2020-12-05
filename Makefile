@@ -6,6 +6,9 @@ make-images:
 	docker build -t feedback-backend ./feedback-backend/
 	echo "BACK IMAGE BUILDED .....\n"
 
+make-hybrid:
+	docker build -t feedback-hybrid ./
+
 make-backend-image:
 	echo "BUILDING BACK IMAGE....."
 	docker build -t feedback-backend ./feedback-backend/

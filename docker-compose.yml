@@ -1,6 +1,22 @@
 version: "3.7"
 
 services:
+  feedback-hyprid:
+    image: feedback-hybrid
+    ports:
+      - 8090:80
+      - 4040:4040
+    networks:
+      - mynetwork
+    environment: 
+      - BACKEND_ADDRESS=localhost
+      - BACKEND_PORT=4040
+      - DB_ADDRESS=database-mongo
+      - DB_PORT=27017
+      - PORT=4040
+    depends_on:
+     - database-mongo
+
   front-feedback:
     image: feedback-frontend 
     ports:
