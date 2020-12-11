@@ -1,17 +1,15 @@
 version: "3.7"
 
 services:
-  feedback-hyprid:
-    image: feedback-hybrid
+  feedback-backend:
+    image: feedback-backend
+    deploy:
+      replicas: 5
     ports:
-      - 8090:80
-      - 4040:4040
+      - 8090:4040
     networks:
-      - mynetwork
       - private-network
     environment: 
-      - BACKEND_ADDRESS=localhost
-      - BACKEND_PORT=4040
       - DB_ADDRESS=database-mongo
       - DB_PORT=27017
       - PORT=4040
@@ -20,25 +18,22 @@ services:
 
   database-mongo:
     image: mongo:latest
-    ports:
-      - 27017:27017
+    deploy:
+      placement:
+        constraints: [node.role == manager]
     networks:
       - private-network
     volumes:
-      - ~/mongo/data:/data/db
+      - type: volume
+        source: mydata
+        target: /data/db
+        volume:
+          nocopy: true
+
+volumes:
+  mydata:
 
 networks:
-  mynetwork:
-    name: custom_network
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1
   private-network:
     name: private-network
-    driver: macvlan
-    ipam:
-     config:
-       - subnet: 11.5.0.0/16
-         gateway: 11.5.0.1
+    driver: overlay

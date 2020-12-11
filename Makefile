@@ -1,15 +1,11 @@
 
-
-make-hybrid:
-	docker build -t feedback-hybrid ./
 make-backend-image:
 	docker build -t feedback-backend ./feedback-backend/
-make-frontend-image:
-	docker build -t feedback-frontend ./feedback-app/
 
-run-compose:
-	sudo docker-compose up -d 
+start-services:
+	docker stack deploy --compose-file docker-compose.yml stack-feedback
 
-make-images: |	make-frontend-image	make-backend-image 	make-hybrid
+check-services:
+	docker stack services stack-feedback
 
-run-all: | make-images run-compose
+run-all: | make-backend-image start-services
