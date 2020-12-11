@@ -18,9 +18,6 @@ services:
 
   database-mongo:
     image: mongo:latest
-    deploy:
-      placement:
-        constraints: [node.role == manager]
     networks:
       - private-network
     volumes:
