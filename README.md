@@ -27,11 +27,14 @@ $ make check-services
 ```
 
 ## Exposed Ports
+The database is not published.
+
 Service | Exposed Port | Internal Port
 ---------|-------------|---------
 Backend| 8090 | 4000
 Database | - | 27017
-The database is not published.
+
+
 
 
 ## History
