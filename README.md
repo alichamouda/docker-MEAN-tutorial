@@ -8,6 +8,7 @@ This is a school project: I created a simple Express API using Mongo, Docker and
 ## Current Version: V2.0
 
 ## Tutorial
+### Launch the services
 You need to install Docker, Docker-compose on your system.
 If docker command requires permission, add **sudo** on ubuntu when running commands.
 You will find all commands in Makefile file.
@@ -25,6 +26,19 @@ To check the services run:
 ```
 $ make check-services
 ```
+### Use the services
+Connect on the API using the base URL:
+```
+http://localhost:8090
+```
+#### Methods
+
+Route | Method | Request | Response
+------|--------|---------|--
+/|GET|-|Hello world
+/feedback|POST| Json contaning a string **message** Attribute| Success or failure message
+/feedback|GET|-|All feedbacks in DB
+
 
 ## Exposed Ports
 The database is not published.
