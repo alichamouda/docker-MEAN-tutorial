@@ -29,7 +29,7 @@ $ make check-services
 ### Use the services
 Connect on the API using the base URL:
 ```
-http://localhost:8090
+http://localhost:8090 or http://127.0.0.1:8090
 ```
 #### Methods
 
@@ -59,8 +59,15 @@ This version uses Docker Swarm for deployment
 - [WORKING] Backend works
 
 
-### V1.0
+### V1.x
 This version uses Docker-compose and not Docker Swarm for deployment
+
+#### V1.2
+- [WORKING] ADDED DB Isolation from localhost and CREATED HYBRID IMAGE
+
+#### V1.1
+- [SOLVED] CORS ISSUES on frontend
+
 #### V1.0
 
 - [WORKING] frontend image 
@@ -69,15 +76,9 @@ This version uses Docker-compose and not Docker Swarm for deployment
 - [WORKING] postman on backend container
 - [FAILING] CORS ISSUES on frontend
 
-#### V1.1
-- [SOLVED] CORS ISSUES on frontend
-
-#### V1.2
-- [WORKING] ADDED DB Isolation from localhost and CREATED HYBRID IMAGE
-
 ### About Contributors
 
 @alichamouda
-> I'm a software engineering student at National Insttute of Applied Sciences and Technology INSAT, University of Carthage.
+> I'm a software engineering student at National Institute of Applied Sciences and Technology INSAT, University of Carthage.
 >Check my website on http://aws.ali-hamouda.codes.
 I thank my tutor Wassim Kallel for his help and advice.
