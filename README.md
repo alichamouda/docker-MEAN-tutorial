@@ -45,7 +45,7 @@ The database is not published.
 
 Service | Exposed Port | Internal Port
 ---------|-------------|---------
-Backend| 8090 | 4000
+Backend| 8090 | 4040
 Database | - | 27017
 
 

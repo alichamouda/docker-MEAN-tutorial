@@ -20,12 +20,8 @@ services:
     image: mongo:latest
     networks:
       - private-network
-    volumes:
-      - type: volume
-        source: mydata
-        target: /data/db
-        volume:
-          nocopy: true
+    volumes: 
+      - mydata:/data/db
 
 volumes:
   mydata:
